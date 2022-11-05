@@ -1,0 +1,38 @@
+﻿@page
+@model SevStudentsApp.Pages.Courses.CreateModel
+@{
+}
+<h2>New Course</h2>
+@if(Model.errorMessage.Equals("")){
+    <h2><strong>@Model.errorMessage</strong></h2>
+}
+<form method="post">
+    <div class="row mb-3">
+        <label for="description" class="col-md-1 col-form-label">Περιγραφη_Μαθήματος</label>
+        <div>
+            <input type="text" class="form-control" name="description" id="description"
+            placeholder="Enter description"/ value="@Model.courseDto.Description"/>
+        </div>
+        <label for="teacher_id" class="col-md-1 col-form-label">Επώνυμο_Καθηγητη</label>
+        <div>
+           <select class="form-control" name="teacher_id">
+               @if(Model.teachers is not null){
+                   @foreach(var teacher in Model.teachers){
+                       <option value="@teacher.Id">@teacher.Lastname</option>
+                   }
+               }
+           </select>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-md-1 col-md-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="offset-md-1 col-md-3 d-grid">
+                <a href="/" role="button" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+

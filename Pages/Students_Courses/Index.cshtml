@@ -1,0 +1,31 @@
+﻿@page
+@model SevStudentsApp.Pages.Students_Courses.IndexModel
+@{
+}
+ <h2>List of Enrolments</h2>
+    <a class="btn btn-primary btn-sm" href="/Students_Courses/Enrolle">New Enrolment</a>
+    <table class="table">
+                <thead>
+                <tr>
+                     <th>Student_id</th>
+                     
+                     <th>Course_id</th>
+                </tr>
+                </thead>
+                <tbody>
+        @if (Model.students_courses is not null)
+        {
+            @foreach (var student_course in Model.students_courses)
+            {
+                 <tr>
+                     <td>@student_course.Student_id</td>
+                     <td>@student_course.Course_id</td>
+                     <td>
+                         <a class="btn btn-primary btn-sm" href="/Students_Courses/Delete?id1=@student_course.Course_id&id=@student_course.Student_id">Delete</a>
+                     </td>
+                </tr>
+            }
+        }
+          </tbody>
+    </table>
+

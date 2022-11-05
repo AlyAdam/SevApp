@@ -1,0 +1,49 @@
+﻿@page
+@model SevStudentsApp.Pages.Students_Courses.EnrolleModel
+@{
+}
+<h2>Start Course</h2>
+@if (Model.errorMessage.Equals(""))
+
+{
+   <h2><strong>@Model.errorMessage</strong></h2>
+}
+<form method="post">
+    <div class="row mb-3">
+        <label for="course_id" class="col-md-1 col-form-label">Περιγραφή_Μαθήματος</label>
+        <div>
+           <select class="form-control" name="course_id">
+                @if (Model.courses is not null)
+                {
+                    @foreach (var course in Model.courses)
+                    {
+                     <option value="@course.Id">@course.Description</option>
+                    }
+                }
+           </select>
+        </div>
+        </div>
+        <div class="row mb-3">
+         <label for="student_id" class="col-md-1 col-form-label">Επώνυμο_Μαθητή</label>
+        <div>
+           <select class="form-control" name="student_id">
+            @if (Model.students is not null)
+            {
+                @foreach (var student in Model.students)
+                {
+                  <option value="@student.Id">@student.Lastname</option>
+                }
+            }
+           </select>
+        </div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="offset-md-1 col-md-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="offset-md-1 col-md-3 d-grid">
+                <a href="/" role="button" class="btn btn-primary">Cancel</a>
+            </div>
+     </div>
+</form>

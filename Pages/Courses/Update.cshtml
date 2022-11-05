@@ -1,0 +1,48 @@
+﻿@page
+@model SevStudentsApp.Pages.Courses.UpdateModel
+@{
+}
+<h2>Update Course</h2>
+@if (Model.errorMessage.Equals(""))
+{
+            <h2><strong>@Model.errorMessage</strong></h2>
+}
+<form method="post">
+    <div class="row mb-3">
+        <input type="hidden" class="form-control" name="id" id="firstname" value="@Model.courseDto.Id" />
+    </div>
+   <div class="row mb-3">
+        <label for="description" class="col-md-1 col-form-label">Περιγραφη</label>
+        <div>
+            <input type="text" class="form-control" name="description" id="description"
+            placeholder="Enter description"/ value="@Model.courseDto.Description"/>
+        </div>
+        <label for="description" class="col-md-1 col-form-label">ID_Καθηγητη</label>
+        <div>
+            <select class="form-control" name="teacher_id">
+                @if (Model.teachers is not null)
+                {
+                    @foreach (var teacher in Model.teachers)
+                    {
+                        @if (Model.courseDto.Teacher_id == teacher.Id){
+                            <option value="@teacher.Id" selected="selected">@teacher.Lastname</option>
+                        }
+                        else{
+                             <option value="@teacher.Id">@teacher.Lastname</option>
+                        }                             
+                    }
+                }
+           </select>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-md-1 col-md-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="offset-md-1 col-md-3 d-grid">
+                <a href="/" role="button" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+
+</form>
